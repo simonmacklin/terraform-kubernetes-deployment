@@ -2,6 +2,10 @@ locals {
 
   labels = var.labels == null ? { app = var.name } : var.labels
 
+  tags = merge(var.tags, {
+    stack = var.stack
+  })
+
   env = flatten([
     for name, value in var.env : {
       name  = tostring(name)
