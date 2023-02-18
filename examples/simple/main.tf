@@ -15,7 +15,7 @@ provider "kubernetes" {
   token                  = data.aws_eks_cluster_auth.selected.token
 }
 
-module "event_proxy" {
+module "simple_service" {
   source    = "../"
   name      = "simple-service"
   stack     = "dev-k8s-fil"
