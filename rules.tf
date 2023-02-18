@@ -4,7 +4,7 @@ resource "kubernetes_manifest" "rule" {
     "apiVersion" = "monitoring.coreos.com/v1"
     "kind"       = "PrometheusRule"
     "metadata" = {
-      "name"    = each.value["name"]
+      "name"    = format("%s-%s", var.name, each.value["name"])
       namespace = var.namespace
       "labels" = {
         "prometheus" = "example"
@@ -15,11 +15,11 @@ resource "kubernetes_manifest" "rule" {
     "spec" = {
       "groups" = [
         {
-          "name" = "./example.rules"
+          "name" = each.value["name"]
           "rules" = [
             {
-              "alert" = "ExampleAlert"
-              "expr"  = "vector(1)"
+              "alert" = each.value["name"]
+              "expr"  = each.value["expr"]
             },
           ]
         },

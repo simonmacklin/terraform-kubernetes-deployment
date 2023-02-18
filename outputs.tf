@@ -7,6 +7,12 @@ output "namespace" {
 }
 
 output "service_name" {
-  value = kubernetes_service.service.metadata[0].name
+  value = var.name
+  depends_on = [
+    kubernetes_service.service
+  ]
 }
 
+output "ports" {
+  value = { for port in var.ports : port.port => port }
+}

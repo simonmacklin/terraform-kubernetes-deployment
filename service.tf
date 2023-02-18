@@ -1,5 +1,6 @@
 
 resource "kubernetes_service" "service" {
+  count = length(var.ports) > 0 ? 1 : 0
   metadata {
     name      = var.name
     namespace = var.namespace

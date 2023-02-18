@@ -15,9 +15,9 @@ provider "kubernetes" {
   token                  = data.aws_eks_cluster_auth.selected.token
 }
 
-module "simple_service" {
+module "iam_service" {
   source    = "../../"
-  name      = "simple-service"
+  name      = "iam_service"
   stack     = "dev-k8s-fil"
   namespace = "default"
   image     = "nginx"

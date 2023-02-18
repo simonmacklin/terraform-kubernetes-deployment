@@ -1,9 +1,9 @@
 
 locals {
   service_iam_annotations = {
-     "eks.amazonaws.com/role-arn" = aws_iam_role.role.arn
+    "eks.amazonaws.com/role-arn" = aws_iam_role.role.arn
   }
-} 
+}
 
 resource "kubernetes_service_account_v1" "service_account" {
   metadata {

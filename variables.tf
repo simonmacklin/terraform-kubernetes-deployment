@@ -21,7 +21,7 @@ variable "deployment_annotations" {
 }
 
 variable "service_annotations" {
-  type = map(string)
+  type    = map(string)
   default = {}
 }
 
@@ -225,8 +225,8 @@ variable "prevent_deploy_on_the_same_node" {
 }
 
 variable "iam_policy" {
-    type = string
-    default = null
+  type    = string
+  default = null
 }
 
 variable "service" {
@@ -249,6 +249,7 @@ variable "ports" {
     service_port   = optional(number)
   }))
   description = "ports to expose"
+  default     = []
 }
 
 variable "service_type" {
@@ -294,6 +295,11 @@ variable "service_monitor" {
     path     = string
     interval = string
   })
+  default = {
+    interval = "30s"
+    path     = "/metrics"
+    port     = 5000
+  }
 }
 
 variable "prometheus_rules" {
@@ -305,16 +311,16 @@ variable "prometheus_rules" {
 }
 
 variable "iam_role_max_session_duration" {
-  type = number
+  type    = number
   default = 3600
 }
 
 variable "attach_iam_policies" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
 variable "tags" {
-  type = map(string)
+  type    = map(string)
   default = {}
 }

@@ -4,9 +4,9 @@ resource "kubernetes_manifest" "monitor" {
     "apiVersion" = "monitoring.coreos.com/v1"
     "kind"       = "ServiceMonitor"
     "metadata" = {
-      "labels" = {
-        "serviceMonitorSelector" = "s"
-      }
+      "labels" = merge(local.labels, {
+        "release" = "prometheus-stack"
+      })
       "name"      = var.name
       "namespace" = var.namespace
     }
@@ -24,9 +24,7 @@ resource "kubernetes_manifest" "monitor" {
         ]
       }
       "selector" = {
-        "matchLabels" = {
-          "operated-prometheus" = "true"
-        }
+        "matchLabels" = local.labels
       }
     }
   }
