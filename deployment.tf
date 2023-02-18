@@ -425,4 +425,7 @@ resource "kubernetes_deployment" "deploy" {
       }
     }
   }
+  depends_on = [
+    aws_iam_role.role
+  ]
 }

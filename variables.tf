@@ -1,4 +1,8 @@
 
+variable "stack" {
+  type = string
+}
+
 variable "name" {
   type        = string
   description = "the name of the application"
@@ -220,12 +224,10 @@ variable "prevent_deploy_on_the_same_node" {
   default     = false
 }
 
-# variable "iam_role" {
-#   type = object({
-#     create     = bool
-#     iam_policy = optional(string)
-#   })
-# }
+variable "iam_policy" {
+    type = string
+    default = null
+}
 
 variable "service" {
   type = object({
@@ -300,4 +302,19 @@ variable "prometheus_rules" {
     expr = string
   }))
   default = []
+}
+
+variable "iam_role_max_session_duration" {
+  type = number
+  default = 3600
+}
+
+variable "attach_iam_policies" {
+  type = list(string)
+  default = []
+}
+
+variable "tags" {
+  type = map(string)
+  default = {}
 }
