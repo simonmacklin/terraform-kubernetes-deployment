@@ -283,12 +283,6 @@ variable "init_containers" {
   default = []
 }
 
-variable "custom_kubernetes_name" {
-  type        = string
-  default     = null
-  description = "used to avoid any existing conflicts in kubernetes"
-}
-
 variable "service_monitor" {
   type = object({
     port     = number
